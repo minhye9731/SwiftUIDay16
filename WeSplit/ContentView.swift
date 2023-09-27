@@ -35,6 +35,19 @@ struct ContentView: View {
         return amountPerPerson
     }
     
+    var grandTotalAmount: Double {
+        // calculate the total per person here
+        let peopleCount = Double(numberOfPeople + 2)
+        let tipSelection = Double(tipPercentage)
+        
+        let tipValue = checkAmount / 100 * tipSelection
+        let grandTotal = checkAmount + tipValue
+        
+        return grandTotal
+    }
+    
+    let currencyFormatter = FloatingPointFormatStyle<Double>.Currency.currency(code: Locale.current.currency?.identifier ?? "USD")
+    
     var body: some View {
         NavigationView {
             Form {
@@ -58,7 +71,7 @@ struct ContentView: View {
                             Text($0, format: .percent)
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .pickerStyle(.navigationLink) // 3) Change the tip percentage picker to show a new screen rather than using a segmented control
                 } header: {
                     Text("How much tip fo you want to leave?")
                 }
