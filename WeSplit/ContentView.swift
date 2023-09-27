@@ -64,7 +64,17 @@ struct ContentView: View {
                 }
                 
                 Section {
-                    Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                    Text(totalPerPerson, format: currencyFormatter)
+                } header: {
+                    Text("Amount per person") // 1) Add a header to the third section, saying “Amount per person”
+                }
+                
+                // 2) Add another section showing the total amount for the check – i.e., the original amount plus tip value, without dividing by the number of people.
+
+                Section {
+                    Text(grandTotalAmount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                } header: {
+                    Text("Grand Total")
                 }
                 
                 
