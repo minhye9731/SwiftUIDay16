@@ -53,7 +53,8 @@ struct ContentView: View {
             Form {
                 
                 Section {
-                    TextField("Amount", value: $checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                    
+                    TextField("Amount", value: $checkAmount, format: currencyFormatter)
                         .keyboardType(.decimalPad)
                         .focused($amountIsFocused) // 해당 Textfield에 amountIsFocused 상태값을 적용
 
